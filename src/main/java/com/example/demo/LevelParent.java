@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -11,6 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public abstract class LevelParent extends Observable {
@@ -33,8 +37,11 @@ public abstract class LevelParent extends Observable {
     private final List<ActiveActorDestructible> enemyProjectiles;
 
     private boolean paused; // Flag to track pause state
+    private final Rectangle pauseOverlay; // Black overlay
     private int currentNumberOfEnemies;
     private LevelView levelView;
+
+    private Text pauseMessage; // Text object for displaying "Paused"
 
     public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
         this.root = new Group();
@@ -53,6 +60,21 @@ public abstract class LevelParent extends Observable {
         this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
         this.levelView = instantiateLevelView();
         this.currentNumberOfEnemies = 0;
+
+        // Initialize the pause overlay
+        this.pauseOverlay = new Rectangle(screenWidth, screenHeight);
+        this.pauseOverlay.setFill(Color.BLACK);
+        this.pauseOverlay.setOpacity(0.5); // Semi-transparent
+        this.pauseOverlay.setVisible(false); // Hidden by default
+        root.getChildren().add(pauseOverlay);
+
+        // Initialize the pause message
+        this.pauseMessage = new Text("Paused");
+        pauseMessage.setFont(Font.font("Arial", FontWeight.BOLD, 48));
+        pauseMessage.setFill(Color.WHITE);
+        pauseMessage.setX(screenWidth / 2 - 100); // Center horizontally
+        pauseMessage.setY(screenHeight / 2); // Center vertically
+
         initializeTimeline();
         friendlyUnits.add(user);
     }
@@ -117,8 +139,13 @@ public abstract class LevelParent extends Observable {
     private void togglePause() {
         if (paused) {
             timeline.play(); // Resume game
+            pauseOverlay.setVisible(false); // Hide the overlay
+            root.getChildren().remove(pauseMessage); // Remove the paused text
         } else {
             timeline.stop(); // Pause game
+            pauseOverlay.toFront();
+            pauseOverlay.setVisible(true); // Show the overlay
+            root.getChildren().add(pauseMessage); // Show the paused text
         }
         paused = !paused; // Toggle paused state
     }
@@ -218,7 +245,9 @@ public abstract class LevelParent extends Observable {
     }
 
     private void updateLevelView() {
-        levelView.removeHearts(user.getHealth());
+        if (levelView != null) { // Only update if levelView is initialized
+            levelView.removeHearts(user.getHealth());
+        }
     }
 
     private void updateKillCount() {
@@ -258,6 +287,10 @@ public abstract class LevelParent extends Observable {
         root.getChildren().add(enemy);
     }
 
+    protected Timeline getTimeline() {
+        return timeline; // Allow subclasses to access the timeline
+    }
+
     protected double getEnemyMaximumYPosition() {
         return enemyMaximumYPosition;
     }
@@ -265,12 +298,24 @@ public abstract class LevelParent extends Observable {
     protected double getScreenWidth() {
         return screenWidth;
     }
-
+    
+    private void updateNumberOfEnemies() {
+    	currentNumberOfEnemies = enemyUnits.size();
+    }
+    
     protected boolean userIsDestroyed() {
-        return user.isDestroyed();
+    	return user.isDestroyed();
+    }
+    
+    protected double getScreenHeight() {
+        return screenHeight;
     }
 
-    private void updateNumberOfEnemies() {
-        currentNumberOfEnemies = enemyUnits.size();
+    protected List<ActiveActorDestructible> getEnemyUnits() {
+        return enemyUnits;
+    }
+
+    protected List<ActiveActorDestructible> getFriendlyUnits() {
+        return friendlyUnits;
     }
 }
