@@ -20,7 +20,7 @@ import javafx.util.Duration;
 public abstract class Scene_Properties extends Observable {
 
     private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
-    private static final int MILLISECOND_DELAY = 30; //original 50
+    private static final int MILLISECOND_DELAY = 25; //original 50
     private final double screenHeight;
     private final double screenWidth;
     private final double enemyMaximumYPosition;
@@ -119,6 +119,8 @@ public abstract class Scene_Properties extends Observable {
                 if (!paused) { // Only process inputs when not paused
                     if (kc == KeyCode.UP) user.moveUp();
                     if (kc == KeyCode.DOWN) user.moveDown();
+                    if (kc == KeyCode.LEFT) user.moveLeft();
+                    if (kc == KeyCode.RIGHT) user.moveRight();
                     if (kc == KeyCode.SPACE) fireProjectile();
                 }
             }
@@ -127,7 +129,7 @@ public abstract class Scene_Properties extends Observable {
         background.setOnKeyReleased(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 KeyCode kc = e.getCode();
-                if (!paused && (kc == KeyCode.UP || kc == KeyCode.DOWN)) {
+                if (!paused && (kc == KeyCode.UP || kc == KeyCode.DOWN || kc == KeyCode.LEFT || kc == KeyCode.RIGHT)) {
                     user.stop();
                 }
             }

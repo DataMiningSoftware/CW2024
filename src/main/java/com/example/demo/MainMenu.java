@@ -13,7 +13,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class MainMenu extends Scene_Properties {
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background3.gif";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.jpg";
 
     public MainMenu(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, 1000, 4000, 0); // Call parent constructor

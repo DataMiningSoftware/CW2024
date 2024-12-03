@@ -4,9 +4,9 @@ public class LevelOne extends Scene_Properties {
 	
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.gif";
 	private static final String NEXT_LEVEL = "com.example.demo.LevelTwo";
-	private static final int TOTAL_ENEMIES = 20;
+	private static final int TOTAL_ENEMIES = 2;
 	private static final int KILLS_TO_ADVANCE = 10;
-	private static final double ENEMY_SPAWN_PROBABILITY = 0.01;
+	private static final double ENEMY_SPAWN_PROBABILITY = 1.5;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 
 	public LevelOne(double screenHeight, double screenWidth) {
