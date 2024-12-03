@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final String TITLE = "Sky Battle";
+    private static final String TITLE = "Mystical Might";
     private Controller myController;
 
     @Override
@@ -15,8 +15,8 @@ public class Main extends Application {
             InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         
         stage.setTitle(TITLE);
-        stage.setResizable(true);  // Allow resizing to make it more adaptable for fullscreen
-        stage.setFullScreen(true); // Make the window fullscreen
+        //stage.setResizable(false);  // Allow resizing to make it more adaptable for fullscreen
+        //stage.setFullScreen(false); // Make the window fullscreen
         
         // Optionally, you can preserve the aspect ratio to avoid distortion when resizing.
         // stage.setMaximized(true); // This will maximize the window, but still allow for resizing.

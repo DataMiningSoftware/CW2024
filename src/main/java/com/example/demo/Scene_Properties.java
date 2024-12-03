@@ -17,10 +17,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public abstract class LevelParent extends Observable {
+public abstract class Scene_Properties extends Observable {
 
     private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
-    private static final int MILLISECOND_DELAY = 50;
+    private static final int MILLISECOND_DELAY = 30; //original 50
     private final double screenHeight;
     private final double screenWidth;
     private final double enemyMaximumYPosition;
@@ -39,11 +39,11 @@ public abstract class LevelParent extends Observable {
     private boolean paused; // Flag to track pause state
     private final Rectangle pauseOverlay; // Black overlay
     private int currentNumberOfEnemies;
-    private LevelView levelView;
+    private Level_Interface levelView;
 
     private Text pauseMessage; // Text object for displaying "Paused"
 
-    public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
+    public Scene_Properties(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
         this.root = new Group();
         this.scene = new Scene(root, screenWidth, screenHeight);
         this.timeline = new Timeline();
@@ -85,7 +85,7 @@ public abstract class LevelParent extends Observable {
 
     protected abstract void spawnEnemyUnits();
 
-    protected abstract LevelView instantiateLevelView();
+    protected abstract Level_Interface instantiateLevelView();
 
     public Scene initializeScene() {
         initializeBackground();

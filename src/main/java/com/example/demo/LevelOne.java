@@ -1,6 +1,6 @@
 package com.example.demo;
 
-public class LevelOne extends LevelParent {
+public class LevelOne extends Scene_Properties {
 	
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.gif";
 	private static final String NEXT_LEVEL = "com.example.demo.LevelTwo";
@@ -40,8 +40,8 @@ public class LevelOne extends LevelParent {
 	}
 
 	@Override
-	protected LevelView instantiateLevelView() {
-		return new LevelView(getRoot(), PLAYER_INITIAL_HEALTH);
+	protected Level_Interface instantiateLevelView() {
+		return new Level_Interface(getRoot(), PLAYER_INITIAL_HEALTH);
 	}
 
 	private boolean userHasReachedKillTarget() {

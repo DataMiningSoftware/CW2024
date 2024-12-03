@@ -4,18 +4,16 @@ public class UserPlane extends FighterPlane {
 
     private static final String IMAGE_NAME = "spacecircle.png";
     private static final double Y_UPPER_BOUND = -40;
-    private static final double Y_LOWER_BOUND = 600.0;
+    private static final double Y_LOWER_BOUND = 800.0;
     private static final double INITIAL_X_POSITION = 5.0;
     private static final double INITIAL_Y_POSITION = 300.0;
     private static final int IMAGE_HEIGHT = 200;
 
     private static final double MAX_VERTICAL_VELOCITY = 10.0; // Maximum velocity for smooth movement
-    private static final double VELOCITY_INCREMENT = 0.6;    // How quickly the velocity changes
     private static final int PROJECTILE_X_POSITION = 110;
     private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
 
     private double verticalVelocity = 0;  // Current vertical velocity
-    private double velocityTarget = 0;   // Desired target velocity
     private int numberOfKills;
 
     public UserPlane(int initialHealth) {
@@ -24,14 +22,7 @@ public class UserPlane extends FighterPlane {
 
     @Override
     public void updatePosition() {
-        // Gradually adjust velocity towards the target
-        if (verticalVelocity < velocityTarget) {
-            verticalVelocity = Math.min(verticalVelocity + VELOCITY_INCREMENT, velocityTarget);
-        } else if (verticalVelocity > velocityTarget) {
-            verticalVelocity = Math.max(verticalVelocity - VELOCITY_INCREMENT, velocityTarget);
-        }
-
-        // Apply velocity and update position
+        // Update position based on the current vertical velocity
         double initialTranslateY = getTranslateY();
         this.moveVertically(verticalVelocity);
         double newPosition = getLayoutY() + getTranslateY();
@@ -54,15 +45,15 @@ public class UserPlane extends FighterPlane {
     }
 
     public void moveUp() {
-        velocityTarget = -MAX_VERTICAL_VELOCITY; // Set target velocity upward
+        verticalVelocity = -MAX_VERTICAL_VELOCITY; // Set velocity upward
     }
 
     public void moveDown() {
-        velocityTarget = MAX_VERTICAL_VELOCITY; // Set target velocity downward
+        verticalVelocity = MAX_VERTICAL_VELOCITY; // Set velocity downward
     }
 
     public void stop() {
-        velocityTarget = 0; // Gradually slow to a stop
+        verticalVelocity = 0; // Stop immediately when key is released
     }
 
     public int getNumberOfKills() {
