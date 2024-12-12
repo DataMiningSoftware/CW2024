@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static final String TITLE = "Mystical Might";
+    private static final String TITLE = "Sky Survivor";
     private Controller myController;
 
     @Override
