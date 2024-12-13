@@ -1,0 +1,8 @@
+module:com.example.demo
+com.example.demo
+com.example.demo.controller
+com.example.demo.Entities
+com.example.demo.Interfaces
+com.example.demo.Levels
+com.example.demo.Projectiles
+com.example.demo.Scene_Manipulator
