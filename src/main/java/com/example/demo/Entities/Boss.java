@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
  */
 public class Boss extends FighterPlane {
 
-    private static final String IMAGE_NAME = "alienXShielded.png";
+    private static final String IMAGE_NAME = "alienX.png";
     private static final double INITIAL_X_POSITION = 1350.0;
     private static final double INITIAL_Y_POSITION = 250.0;
     private static final double PROJECTILE_X_OFFSET = -100.0;
