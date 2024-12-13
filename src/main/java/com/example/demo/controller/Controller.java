@@ -48,7 +48,7 @@ public class Controller implements Observer {
      * 
      * @param className The fully qualified class name of the level to navigate to.
      */
-    private void navigateToLevel(String className) {
+    protected void navigateToLevel(String className) {
         try {
             // Create the level using reflection
             Scene_Properties sceneProperties = createLevel(className);
@@ -66,7 +66,7 @@ public class Controller implements Observer {
      * @return A new instance of Scene_Properties corresponding to the specified level class.
      * @throws Exception If there is an error during the reflection or instantiation process.
      */
-    private Scene_Properties createLevel(String className) throws Exception {
+    protected Scene_Properties createLevel(String className) throws Exception {
         // Load the class dynamically
         Class<?> levelClass = Class.forName(className);
         // Get the constructor that takes two double parameters (stage width and height)

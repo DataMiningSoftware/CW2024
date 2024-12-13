@@ -176,7 +176,7 @@ public class Boss extends FighterPlane {
      *
      * @return True if the boss should fire, false otherwise.
      */
-    private boolean shouldFireProjectile() {
+    public boolean shouldFireProjectile() {
         return Math.random() < FIRE_RATE;
     }
 

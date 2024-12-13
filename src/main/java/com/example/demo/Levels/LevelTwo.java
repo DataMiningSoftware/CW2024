@@ -23,7 +23,7 @@ public class LevelTwo extends Scene_Properties {
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private static final String MUSIC_FILE = "/com/example/demo/sounds/LevelTwoOST.mp3"; // Path to level-specific music file
 
-    private MediaPlayer mediaPlayer; // MediaPlayer for background music
+    public MediaPlayer mediaPlayer; // MediaPlayer for background music
 
     /**
      * Constructs a new LevelTwo instance.
@@ -91,14 +91,14 @@ public class LevelTwo extends Scene_Properties {
      *
      * @return true if the user has reached the kill target, false otherwise.
      */
-    private boolean userHasReachedKillTarget() {
+    boolean userHasReachedKillTarget() {
         return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE;
     }
 
     /**
      * Handles the game over scenario, including stopping the background music.
      */
-    private void handleGameOver() {
+    public void handleGameOver() {
         loseGame(); // Lose the game
         stopMusic(); // Stop the background music
     }
@@ -107,7 +107,7 @@ public class LevelTwo extends Scene_Properties {
      * Proceeds to the next level when the kill target is met.
      * Stops the current level's background music and transitions to the next level.
      */
-    private void proceedToNextLevel() {
+    public void proceedToNextLevel() {
         stopMusic(); // Stop the background music when transitioning to the next level
         goToNextLevel(NEXT_LEVEL); // Move to the next level
     }
@@ -116,7 +116,7 @@ public class LevelTwo extends Scene_Properties {
      * Spawns a new enemy at a random Y position.
      * The enemy starts at the right side of the screen.
      */
-    private void spawnEnemy() {
+    public void spawnEnemy() {
         double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
         double newEnemyInitialXPosition = getScreenWidth(); // Starting from the right side of the screen
         ActiveActorDestructible newEnemy = new EnemyPlaneV2(newEnemyInitialXPosition, newEnemyInitialYPosition);
@@ -127,7 +127,7 @@ public class LevelTwo extends Scene_Properties {
      * Plays the level background music.
      * The music will loop indefinitely during the level.
      */
-    private void playBackgroundMusic() {
+    public void playBackgroundMusic() {
         try {
             String musicPath = getClass().getResource(MUSIC_FILE).toExternalForm();
             Media media = new Media(musicPath);

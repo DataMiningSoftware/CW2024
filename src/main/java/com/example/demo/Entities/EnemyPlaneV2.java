@@ -21,7 +21,7 @@ public class EnemyPlaneV2 extends FighterPlane {
     private static final int INITIAL_HEALTH = 2;  // Initial health of the enemy plane
     private static final double FIRE_RATE = 0.01;  // Probability of firing a projectile
 
-    private RotateTransition rotateTransition;  // Rotation animation for the enemy plane
+    public RotateTransition rotateTransition;  // Rotation animation for the enemy plane
 
     /**
      * Constructs a new EnemyPlaneV2 with a specified initial position.
@@ -85,7 +85,7 @@ public class EnemyPlaneV2 extends FighterPlane {
      * Initializes the spinning animation for the enemy plane. The plane rotates
      * continuously with a smooth animation.
      */
-    private void initializeSpin() {
+    public void initializeSpin() {
         rotateTransition = new RotateTransition(Duration.seconds(0.5), this);  // Set up the rotation duration and target
         rotateTransition.setFromAngle(0);  // Start angle
         rotateTransition.setToAngle(360);  // Full rotation

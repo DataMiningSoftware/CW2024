@@ -23,7 +23,7 @@ public class UserPlane extends FighterPlane {
     private static final double X_UPPER_BOUND = 800.0;
     private static final double X_LOWER_BOUND = 0.0;
     private static final double INITIAL_X_POSITION = 5.0;
-    private static final double INITIAL_Y_POSITION = 300.0;
+    public static final double INITIAL_Y_POSITION = 300.0;
     private static final int IMAGE_HEIGHT = 200;
     private static final int PROJECTILE_Y_POSITION_OFFSET = 350;
     public static final double SCREEN_WIDTH = 800;
@@ -59,7 +59,7 @@ public class UserPlane extends FighterPlane {
     private long lastFiredTimeMinigun = 0;
 
     private GunType currentGunType = GunType.PISTOL;
-    private GunDisplay gunDisplay = new GunDisplay();
+    public GunDisplay gunDisplay = new GunDisplay();
 
     // Enum for different gun types
     public enum GunType {
@@ -253,7 +253,7 @@ public class UserPlane extends FighterPlane {
      *
      * @param soundFilePath The file path of the sound to play.
      */
-    private void playSound(String soundFilePath) {
+    public void playSound(String soundFilePath) {
         try {
             String path = getClass().getResource(soundFilePath).toExternalForm();
             Media media = new Media(path);
