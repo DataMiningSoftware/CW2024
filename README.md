@@ -18,134 +18,176 @@
 
 ---
 
-## Implemented and Working Properly
-1. **Main Menu**:  
-   - Fully functional main menu with clearly defined options, including "Start" and "Quit" buttons for seamless navigation.
-2. **Level Advancement**:  
+## ✅ **Implemented and Working Properly**
+
+1. **Main Menu**  
+   - Fully functional main menu with clearly defined options, including *Start* and *Quit* buttons for seamless navigation.
+
+2. **Level Advancement**  
    - Smooth transitions between levels, each with unique gameplay mechanics. The final level introduces boss-specific mechanics, increasing the challenge.
-3. **Enemy Behavior**:  
+
+3. **Enemy Behavior**  
    - Enemies follow detailed attack patterns, behaviors, and collision detection rules. Enhanced logic ensures that enemies do not fire when the player’s plane is directly beneath them or has passed them.
-4. **Projectile System**:  
+
+4. **Projectile System**  
    - Player and enemy projectiles are fully functional with accurate collision detection, lifespan limits, and dynamic homing behavior for specific projectiles.
-5. **Boss Behavior**:  
+
+5. **Boss Behavior**  
    - Complete implementation of the boss system, including shield activation/deactivation, projectile firing, and smooth movement. The shield dynamically follows the boss during gameplay.
-6. **Game Over and Victory Screens**:  
+
+6. **Game Over and Victory Screens**  
    - Customizable screens that appear based on win or loss conditions. These screens feature visually appealing animations and a centralized layout for clear presentation.
-7. **Player Health Bar**:  
+
+7. **Player Health Bar**  
    - Dynamic health bar represented by heart icons. Health depletes when hit by enemy projectiles, providing instant visual feedback.
-8. **Pause Menu**:  
+
+8. **Pause Menu**  
    - Allows players to pause the game, resume gameplay, restart, or return to the main menu without disrupting the gaming experience.
-9. **Background Music and Sound Effects**:  
+
+9. **Background Music and Sound Effects**  
    - Fully integrated sound system with music and sound effects, though the loudness controls remain unimplemented.
-10. **Player Movement Animation**:  
+
+10. **Player Movement Animation**  
     - Smooth player movement with weighted acceleration and deceleration, offering a more realistic and responsive control system.
-11. **Alternative Shooting Methods**:  
+
+11. **Alternative Shooting Methods**  
     - Three unique fire modes for the player: Pistol, Shotgun, and Minigun. Each fire mode is accessible via keybinds (1, 2, and 3), offering varied shooting styles.
-12. **Kill Counter**:  
+
+12. **Kill Counter**  
     - A fully functional kill counter that tracks the number of enemies defeated and displays how many are left before advancing to the next level.
-13. **Smarter Enemies**:  
+
+13. **Smarter Enemies**  
     - Two enemy types equipped with homing projectiles that track the player’s last known location when fired.
-14. **Faster Frame Rates**:  
+
+14. **Faster Frame Rates**  
     - The game runs at up to 30 frames per second (FPS), ensuring a smoother experience.
-15. **Spinning Enemies**:  
+
+15. **Spinning Enemies**  
     - Most enemies feature a combat animation that includes a 360-degree spin while attacking, adding visual flair and dynamic movement to encounters.
-16. **Damage Indicator**:  
+
+16. **Damage Indicator**  
     - A damage indicator appears when the player’s projectiles hit an enemy, providing feedback that attacks are successfully connecting.
-17. **Level Transitions**:  
+
+17. **Level Transitions**  
     - A brief animation plays during level transitions, enhancing the flow between levels and immersing the player in the game's world.
-18. **Retry Option**:  
+
+18. **Retry Option**  
     - A retry button appears on both the win and loss screens, giving players the option to immediately replay the level.
 
 ---
 
-## Implemented but Not Working Properly
-- **Boss Sheild mechanic**: The boss's shield is present and is functional however it does not appear unfortunatly.
-- **Enemy Death Animation**: Enemy planes do have their death animations like an yellow colored fading effect, but wont function under normal circumstances. The only time it played was when i removed the removeDestroyedActors(enemyUnits); line number 367 in Scene_Properties.java. doing so let the enemy live on forever
--**Level-Border**: The level border is where the player cannot pass and where the projectiles will dissapear after going past it. The player is blocked from going too far too the right but the projectiles dont dissapear.
-- **Player Shield mechanic**: A limited shield that can negate enemy projectiles but its charge will be consumed for each second it is used. Overtime it will recover its charge for the player to use it again. This mechanic was implemented but each time it is called in the game loop, it fails to appear when pressing the keybind.
-- **Equipped Gun Indicator**: A box with a text that will show which gun the player is currently using. The box would just not appear despite being inside the game loop.
--**Pause Menu Screen**: The buttons, resume, restart and quit to main menu are presented to the player. Only resume and Quit to main menu did not function as intended. If the player presses resume, only the enemies will move and the player remains statis, only when the user presses space does the game restart back to the first level. On the other hand, quit to main menu made 2 instances of the main menu. Initially the first time I coded this, the alignment of the main menu screen was off resulting in the main menu buttons to not be visible. Even with the main menu aligned now, the buttons of the second instance do not work, but the buttons on the first do.
+## ⚠️ **Implemented but Not Working Properly**
+
+1. **Boss Shield Mechanic**  
+   - The boss’s shield is implemented and functional, but it fails to appear on screen when activated.
+
+2. **Enemy Death Animation**  
+   - Enemy planes have a death animation with a yellow fading effect, but it doesn’t trigger during normal gameplay. The animation only works when the `removeDestroyedActors(enemyUnits);` line is removed from `Scene_Properties.java` (line 367), which causes the enemy to live on forever.
+
+3. **Level Border**  
+   - The level border blocks the player from going too far to the right, but projectiles don’t disappear once they pass the border.
+
+4. **Player Shield Mechanic**  
+   - A limited shield can negate enemy projectiles, but its charge depletes over time and recovers gradually. The mechanic was implemented but does not appear when the keybind is pressed during the game loop.
+
+5. **Equipped Gun Indicator**  
+   - A box with a text indicator showing the currently equipped gun does not appear, despite being correctly integrated into the game loop.
+
+6. **Pause Menu Screen**  
+   - The Pause Menu displays buttons for *Resume*, *Restart*, and *Quit to Main Menu*. However:
+     - The *Resume* button leaves the player stationary while enemies move. Only pressing the *Space* key restarts the game from level 1.
+     - The *Quit to Main Menu* button causes two instances of the main menu to open. Initially, the main menu alignment was off, but even after fixing it, the second instance’s buttons do not work, while the buttons on the first instance are functional.
 
 ---
 
-## Features Not Implemented
-- **Multiplayer Mode**: A feature to allow multiple players to join the game was planned but not implemented due to time constraints.
-- **Settings Menu**: I wanted to make one, but i only had volume and difficulty adjuster in mind, so i didnt prioritize it as mcuh as the other features. Hence it was forgotten.
-- **Endless Mode**: A mode of constant enemy aggression without a way to win. Because of that I thought it had no purpose and scrapped the idea.
-- **Advanced Shield Animations**: While the shield follows the boss correctly, planned animations for shield activation and deactivation were not fully implemented.
-- **Cutscenes**: A short video or gif to immerse the player in the narrative of the game. Due to time constraints I decided agaisnt it.
-- **Power ups**: Initially the Player would be abe to access 3 transformtion with each transformation having an individual buff, yellow was the base form, red was the power form which gave you extra 2 hearts, green was speed form which would boost your traversal speed and blue Tiny mode making it easier to dodge enemy projectiles. However due to the difference in design it lead to difference in proportions which made it hard to scale and even harder code. The real problem was the class imageview could not instiate a new instance of another image. Why? I don't know either. But as if that werent enough images just failed to load entirely despite them being able to load before. The same constant error of exception errors drove me to insane for awhile before going back to work on other features instead.
-- **Random Pickups** Random floating objects that the player can collect to receive hearts, buffs and/or money. I thought about it but decided agaisnt it as the screen would be too overstimulating especially in the first 2 levels.
-- **Boss Health bar and shield bar** An indicator of how much health and shield the boss had before depeltion. I had spent too much time on it for it not being able to work. For some apparent reason it couldnt initialize because it was null. Despite all my efforts, I decided to go with damage indicators and console messages.
+## 🚫 **Features Not Implemented**
+
+1. **Multiplayer Mode**  
+   - A planned feature for multiple players to join the game. Unfortunately, due to time constraints, it was not implemented.
+
+2. **Settings Menu**  
+   - While the idea for a settings menu was conceived, it only included volume and difficulty adjusters. It was deprioritized in favor of other features and eventually forgotten.
+
+3. **Endless Mode**  
+   - A mode with constant enemy aggression and no way to win. Ultimately, the idea was scrapped, as it seemed purposeless.
+
+4. **Advanced Shield Animations**  
+   - Although the shield follows the boss, planned animations for its activation and deactivation were not fully implemented.
+
+5. **Cutscenes**  
+   - Short videos or gifs to immerse the player in the narrative were considered, but time constraints led to their exclusion.
+
+6. **Power-Ups**  
+   - Power-ups were envisioned as three transformations, each with a unique buff:  
+     - **Yellow**: Base form  
+     - **Red**: Power form (extra 2 hearts)  
+     - **Green**: Speed form (increased movement speed)  
+     - **Blue**: Tiny mode (easier to dodge projectiles)  
+     However, scaling issues, difficulties with the `ImageView` class, and persistent errors caused frustration, ultimately leading to the feature being abandoned.
+
+7. **Random Pickups**  
+   - Floating objects that could grant hearts, buffs, or money were considered, but abandoned due to the risk of overstimulating the screen, particularly in the first two levels.
+
+8. **Boss Health and Shield Bars**  
+   - An indicator for the boss's health and shield was planned, but despite extensive work, it couldn't be initialized due to null pointer issues. As a result, I opted for damage indicators and console messages.
 
 ---
 
-## New Java Classes
-The following Java classes were introduced:
-1. **`GunDisplay.java`**:
-   - Purpose: Handles the display and update of the current gun name in the game's UI. Provides a VBox container and methods to dynamically update the gun's name and styling.
-   - Location: `src/main/java/com/example/demo/Interfaces/`
-   - Key Features:
-     - Displays the current gun name with customizable font, size, weight, and color.
-     - Allows dynamic updates to the displayed gun name.
-     - Provides a VBox container for integrating the gun display into the game's UI.
-     - Ensures consistent and visually appealing text styling.
+## 🆕 **New Java Classes**
 
-2. **`LevelTwo.java`**:
-   - Purpose: Implements the second level of the game, managing gameplay mechanics such as enemy spawning, kill tracking, background music, and transitions to the next level.
-   - Location: `src/main/java/com/example/demo/Levels/`
-   - Key Features:
-     - Spawns enemies with configurable probabilities and positions.
-     - Tracks player kills and transitions to the next level upon meeting the kill target.
-     - Plays level-specific background music, looping indefinitely during gameplay.
-     - Handles game-over scenarios, including stopping music and triggering appropriate actions.
-     - Customizes the level with a unique background, player health settings, and enemy behavior.
-     - Provides smooth transitions to the next level while stopping current music playback.
+1. **`GunDisplay.java`**
+   - **Purpose**: Manages the display and update of the current gun name in the game’s UI, ensuring dynamic updates and styling.
+   - **Location**: `src/main/java/com/example/demo/Interfaces/`
+   - **Key Features**:
+     - Customizable font, size, weight, and color for the gun display.
+     - Updates the gun name dynamically during gameplay.
+     - Provides a clean, visually appealing VBox container for UI integration.
 
-3. **`EnemyPlaneV2.java`**:
-   - Purpose: Represents an upgraded version of an enemy plane with spinning animation and the ability to fire advanced projectiles. Manages movement, firing logic, and visual effects during gameplay.
-   - Location: `src/main/java/com/example/demo/Entities/`
-   - Key Features:
-     - **Projectile System**: Fires advanced projectiles (`EnemyProjectileV2`) towards the player's plane with a probabilistic fire rate.
-     - **Movement**: Moves horizontally at a fixed speed, simulating a dynamic flight path.
-     - **Damage Handling**: Reduces health when hit and triggers a damage visual effect (e.g., flashing red).
-     - **Spinning Animation**: Continuously rotates with a smooth animation for enhanced visual appeal.
-     - **Customizable Parameters**: Configurable properties like health, fire rate, image dimensions, and projectile offsets.
-     - **Integration with User**: Targets the player's position to calculate precise projectile direction.
+2. **`LevelTwo.java`**
+   - **Purpose**: Implements the second level, managing enemy spawning, kill tracking, music, and transitions to the next level.
+   - **Location**: `src/main/java/com/example/demo/Levels/`
+   - **Key Features**:
+     - Configurable enemy spawning with probabilities and positions.
+     - Tracks kills and moves to the next level upon reaching the kill target.
+     - Plays background music that loops throughout the level.
+     - Customizes the level with a unique background and enemy behavior.
+     - Ensures smooth transitions and stops music playback when the level ends.
 
-4. **`EnemyProjectileV2.java`**:
-   - Purpose: Represents an advanced enemy projectile designed to track and follow the player's plane dynamically, adjusting its trajectory based on the player's movements.
-   - Location: `src/main/java/com/example/demo/Projectiles/`
-   - Key Features:
-     - **Target Tracking**: Calculates and adjusts velocity to follow the player's plane in real time.
-     - **Customizable Properties**: Configurable image, size, and base velocity for unique gameplay behaviors.
-     - **Directional Movement**: Moves towards the calculated direction with both horizontal and vertical components.
-     - **Dynamic Velocity Calculation**: Determines the direction vector and normalizes it to maintain consistent speed.
-     - **Integration with User Plane**: Actively tracks the position of the player's plane for precise targeting.
-     - **Inheritance**: Extends the base `Projectile` class, reusing its foundational properties and methods.
+3. **`EnemyPlaneV2.java`**
+   - **Purpose**: Upgrades the enemy plane with spinning animation and advanced projectile firing mechanics.
+   - **Location**: `src/main/java/com/example/demo/Entities/`
+   - **Key Features**:
+     - Fires advanced projectiles (`EnemyProjectileV2`) at the player with a probabilistic fire rate.
+     - Smooth horizontal movement simulating dynamic flight.
+     - Features a spinning animation for added visual appeal.
+     - Targets the player’s position for precise projectile direction.
+     - Customizable health, fire rate, image dimensions, and projectile offsets.
 
-5. **`MainMenu.java`**:
-   - Purpose: Implements the main menu scene for the game, including a title, start/exit buttons, background, and music. It provides the initial user interface for starting or exiting the game.
-   - Location: `src/main/java/com/example/demo/`
-   - Key Features:
-     - **Title Animation**: A pulsating effect for the game title ("Sky Survivor") to attract attention.
-     - **Background Image**: Displays an animated background image to enhance visual appeal.
+4. **`EnemyProjectileV2.java`**
+   - **Purpose**: An advanced enemy projectile that tracks and follows the player's movements.
+   - **Location**: `src/main/java/com/example/demo/Projectiles/`
+   - **Key Features**:
+     - Calculates and adjusts velocity to follow the player's movements in real-time.
+     - Customizable properties such as size, velocity, and image.
+     - Moves in both horizontal and vertical directions.
+     - Active tracking of the player's position for precise targeting.
+     - Inherits from the base `Projectile` class to reuse common properties.
+
+5. **`MainMenu.java`**
+   - **Purpose**: Implements the game's main menu scene, including start/exit buttons, background, and music.
+   - **Location**: `src/main/java/com/example/demo/`
+   - **Key Features**:
+     - **Title Animation**: Pulsating effect on the "Sky Survivor" title to catch attention.
+     - **Background**: Animated background to enhance visual appeal.
      - **Start and Exit Buttons**:
-       - **Start Button**: Transitions to the first game level and stops background music.
-       - **Exit Button**: Closes the application.
-       - Both buttons include hover effects for a polished UI.
-     - **Background Music**:
-       - Plays a looping soundtrack (`MainMenuOST.mp3`) for the main menu.
-       - Music stops when transitioning to the game or exiting the menu.
-     - **Scene Integration**:
-       - Extends `Scene_Properties` for seamless compatibility with the game’s scene management system.
-       - Defines methods like `initializeScene` and placeholders for unused gameplay logic (e.g., enemy spawns).
-     - **Responsiveness**:
-       - Adapts the layout to fit specified screen dimensions.
-       - Ensures interactive elements are styled and positioned for usability.
-
+       - **Start**: Begins the first level, stopping background music.
+       - **Exit**: Closes the game.
+       - Both buttons include hover effects for a polished feel.
+     - **Background Music**: Plays a looping soundtrack (`MainMenuOST.mp3`) in the background.
+     - **Scene Integration**: Seamless compatibility with the game’s scene management system via `Scene_Properties`.
+     - **Responsive Design**: Layout adapts to screen dimensions and positions UI elements for optimal usability.
+     - 
 ---
-
 ## Unit Tests
 
 1. **`LevelBossTest.java`**:
@@ -197,7 +239,6 @@ The following Java classes were introduced:
      - **Tests the visual shield indicator**, ensuring that it displays the correct shield status (ON/OFF) based on the current shield state.
      - **Verifies interaction with `LevelBoss_Interface`**, ensuring that the boss interacts correctly with the level system for game progression.
 
-
 6. **`EnemyPlaneV2Test.java`**:
    - **Purpose**: Tests the functionality of the `EnemyPlaneV2` class, including its spinning animation, movement, projectile firing, and damage handling.
    - **Details**:
@@ -214,9 +255,9 @@ The following Java classes were introduced:
 
 - **`EnemyPlaneV2Test.java`**:
    - **Verifies projectile firing**, ensuring that the enemy plane fires projectiles towards the player’s plane based on the fire rate probability.
-     - **Checks damage handling**, ensuring that the plane's health is reduced when it takes damage, and that visual effects like flashing are triggered.
-     - **Confirms the health initialization**, ensuring that the enemy plane starts with the correct health value.
-     - **Validates fire rate**, ensuring that the probability of firing a projectile follows the specified fire rate.
+   - **Checks damage handling**, ensuring that the plane's health is reduced when it takes damage, and that visual effects like flashing are triggered.
+   - **Confirms the health initialization**, ensuring that the enemy plane starts with the correct health value.
+   - **Validates fire rate**, ensuring that the probability of firing a projectile follows the specified fire rate.
 
 **`Level_Interface.java`**:
    - **Purpose**: Manages and updates the user interface (UI) elements related to a specific game level, including heart displays, win/loss images, and kill count updates.
@@ -236,8 +277,8 @@ The following Java classes were introduced:
 
 - **`BossTest.java`**:
    - **Confirms health management**, ensuring that the boss's health is correctly initialized and updated during gameplay.
-     - **Tests the visual shield indicator**, ensuring that it displays the correct shield status (ON/OFF) based on the current shield state.
-     - **Verifies interaction with `LevelBoss_Interface`**, ensuring that the boss interacts correctly with the level system for game progression.
+   - **Tests the visual shield indicator**, ensuring that it displays the correct shield status (ON/OFF) based on the current shield state.
+   - **Verifies interaction with `LevelBoss_Interface`**, ensuring that the boss interacts correctly with the level system for game progression.
 
 - **`MainMenuTest.java`**:
    - **Validates the scene initialization**, ensuring the background image and buttons are correctly displayed.
@@ -253,46 +294,45 @@ The following Java classes were introduced:
 The following Java classes were modified, along with reasons for the changes:
 
 1. **`Scene_Properties.java`**:
-- **Purpose**: This file is responsible for initializing the fundamental aspects of each game level. It establishes the core properties that define how the game behaves at each level, ensuring consistency across different stages. This includes setting up game loops, the environment, and gameplay rules.
-- **Key Changes**:
-  - Defined the standard behavior and layout for all levels, creating a clear structure for future level development.
-  - Allowed easy accommodation of additional features, such as new enemies, obstacles, or level-specific mechanics.
-  - Centralized where the most crucial gameplay logic occurs, ensuring easy scalability.
+   - **Purpose**: This file is responsible for initializing the fundamental aspects of each game level. It establishes the core properties that define how the game behaves at each level, ensuring consistency across different stages. This includes setting up game loops, the environment, and gameplay rules.
+   - **Key Changes**:
+     - Defined the standard behavior and layout for all levels, creating a clear structure for future level development.
+     - Allowed easy accommodation of additional features, such as new enemies, obstacles, or level-specific mechanics.
+     - Centralized where the most crucial gameplay logic occurs, ensuring easy scalability.
 
 2. **`Main.java`**:
-- **Purpose**: The main class initializes the game by giving it a title and launching the first level. This is the entry point of the game where the game window is configured, and the overall setup takes place.
-- **Key Changes**:
-  - Set the name of the game, which will be visible in the window title bar.
-  - Established the main game loop and entry point for launching the game.
+   - **Purpose**: The main class initializes the game by giving it a title and launching the first level. This is the entry point of the game where the game window is configured, and the overall setup takes place.
+   - **Key Changes**:
+     - Set the name of the game, which will be visible in the window title bar.
+     - Established the main game loop and entry point for launching the game.
 
 3. **`Controller.java`**:
-- **Purpose**: The controller manages level transitions, game state handling, and window setup. It ensures the game progresses logically from one level to the next without issues, while also handling key gameplay functions like window resizing and full-screen mode.
-- **Key Changes**:
-  - Ensured that the game window remains maximized in full-screen mode throughout gameplay for an immersive experience.
-  - Automatically rescales the background image when transitioning between different screen resolutions, ensuring the game visuals remain consistent.
+   - **Purpose**: The controller manages level transitions, game state handling, and window setup. It ensures the game progresses logically from one level to the next without issues, while also handling key gameplay functions like window resizing and full-screen mode.
+   - **Key Changes**:
+     - Ensured that the game window remains maximized in full-screen mode throughout gameplay for an immersive experience.
+     - Automatically rescales the background image when transitioning between different screen resolutions, ensuring the game visuals remain consistent.
 
 4. **`EnemyPlaneV1.java`**:
-- **Purpose**: This class defines the behavior and attributes of enemy planes, which act as obstacles for the player. The main goal is to make the enemy planes behave in a way that challenges the player without being overly simplistic.
-- **Key Changes**:
-  - Integrated a continuous spinning animation to give the enemies a more dynamic and unpredictable movement pattern.
-  - Enhanced the firing mechanism with more varied shooting patterns, making the gameplay more challenging and engaging.
-  - Ensured that the enemies follow a constant forward motion, creating a predictable but challenging path for the player to avoid.
+   - **Purpose**: This class defines the behavior and attributes of enemy planes, which act as obstacles for the player. The main goal is to make the enemy planes behave in a way that challenges the player without being overly simplistic.
+   - **Key Changes**:
+     - Integrated a continuous spinning animation to give the enemies a more dynamic and unpredictable movement pattern.
+     - Enhanced the firing mechanism with more varied shooting patterns, making the gameplay more challenging and engaging.
+     - Ensured that the enemies follow a constant forward motion, creating a predictable but challenging path for the player to avoid.
 
 5. **`FighterPlane.java`**:
-- **Purpose**: The FighterPlane class acts as the base class for all entities within the game, providing the foundation for common behavior such as movement and collision detection.
-- **Key Changes**:
-  - Implemented collision detection to track and handle interactions between entities.
-  - Added visual indicators (such as flashing effects) to show when an entity has been hit, enhancing feedback during gameplay.
+   - **Purpose**: The FighterPlane class acts as the base class for all entities within the game, providing the foundation for common behavior such as movement and collision detection.
+   - **Key Changes**:
+     - Implemented collision detection to track and handle interactions between entities.
+     - Added visual indicators (such as flashing effects) to show when an entity has been hit, enhancing feedback during gameplay.
 
 6. **`UserPlane.java`**:
-- **Purpose**: This class represents the player's plane, giving them control over their movements and attacks. It also introduces different weapons and shooting methods, allowing the player to customize their gameplay experience.
-- **Key Changes**:
-  - Added an alternate fire mode to provide variety in attack strategies, allowing the player to choose the best method of offense depending on the situation.
+   - **Purpose**: This class represents the player's plane, giving them control over their movements and attacks. It also introduces different weapons and shooting methods, allowing the player to customize their gameplay experience.
+   - **Key Changes**:
+     - Added an alternate fire mode to provide variety in attack strategies, allowing the player to choose the best method of offense depending on the situation.
 
 7. **`Level_Interface.java`**:
-- **Purpose**: This file is responsible for ensuring that all user interface (UI) elements, such as the kill counter and heart display, function properly within the game. It manages UI components based on the player's progress in the game.
-- **Key Changes**:
-  - Ensured that the kill counter and heart display elements are updated correctly as the game progresses, providing real-time feedback on the player's performance.
+   - **Purpose**: This file is responsible for ensuring that all user interface (UI) elements, such as hearts, win/loss indicators, and kill count, are correctly displayed and updated in response to gameplay.
+
 
 8. **`LevelBoss.java`**:
 - **Purpose**: This class is responsible for increasing the difficulty of the game during the boss level. It creates a challenging experience for the player by introducing a boss encounter with unique mechanics and visual/audio effects.
@@ -372,8 +412,7 @@ The following Java classes were modified, along with reasons for the changes:
 9. **Scene_Properties**:
     - The `Scene_Properties` class, which controls the game loop, became more integral to the game’s structure than I initially realized. It was challenging to keep track of what methods were being passed or received, and I didn’t realize I had accumulated over 600 lines of code. Refactoring this class to manage the game’s flow properly took two full days, but I eventually got it working as it is today. This experience taught me the importance of careful planning and managing data efficiently in the future.
 
-By addressing these unexpected issues, the game achieved a stable and functional state, though further refinement could improve some aspects.
-
+By addressing these unforeseen issues, the game reached a stable and functional state, though there is still room for further refinement in certain areas. 😊
 
 ---
 
